@@ -1,0 +1,7 @@
+FROM nvidia/cuda:10.1-base-ubuntu16.04
+COPY sources.list /etc/apt/sources.list
+COPY ethminer etc.sh kernels /root/
+RUN apt-get clean && apt-get update && apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+CMD ["sh", "-c", "sh /root/etc.sh"]
